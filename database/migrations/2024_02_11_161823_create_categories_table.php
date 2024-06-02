@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('status'); //1: hoat dong, 0: tam khoa
             $table->text('description')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('slug');
             $table->boolean('deleted')->default(false); //1: da xoa, 0: chua xoa
             $table->datetime('deleted_at')->nullable();
             $table->timestamps();

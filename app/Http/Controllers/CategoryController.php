@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\createCategoryRequest;
 use Carbon\Carbon;
+use Str;
 
 class CategoryController extends Controller
 {
@@ -45,6 +46,19 @@ class CategoryController extends Controller
         //Add new Category
         $category = new Category;
         $category->fill($request->all());
+        $category->slug = Str::slug($category->name, '-').'-'.Str::random(10);
+
+        //Save Category's thumbnail
+        $get_image = $request->thumbnail;
+        if($get_image)
+        {
+            $path = 'img/categories/';
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.'-'.Str::random(10).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move($path,$new_image);
+            $category->thumbnail = $new_image;
+        }
 
         $category->save();
 
@@ -75,8 +89,30 @@ class CategoryController extends Controller
     {
         //Validate
 
+        //Update category
         $category = Category::findOrFail($id);
         $category->fill($request->all());
+
+        //Save category's thumbnail 
+        $get_image = $request->thumbnail;
+
+        if($get_image)
+        {
+            //Delete old Image
+            $path_unlink = 'img/categories/'.$category->thumbnail;
+            if(file_exists($path_unlink) && $path_unlink !== 'img/categories/')
+            {
+                unlink($path_unlink);
+            }
+                    
+            //Add Image
+            $path = 'img/categories/';
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.'-'.Str::random(10).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move($path,$new_image);
+            $category->thumbnail = $new_image;
+        }
 
         $category->save();
 
@@ -112,6 +148,14 @@ class CategoryController extends Controller
     public function destroy(Request $request)
     {
         $category = Category::findOrFail($request->id);
+
+        //Delete thumbnail
+        $path_unlink = 'img/categories/'.$category->thumbnail;
+        if(file_exists($path_unlink) && $path_unlink !== 'img/categories/')
+        {
+            unlink($path_unlink);
+        }
+
         $category->delete(); 
 
         return redirect('admin/category');

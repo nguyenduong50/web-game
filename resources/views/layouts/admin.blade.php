@@ -14,6 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -33,7 +35,7 @@
                             <a class="nav-link {{strpos(url()->current(), 'user') == true ? 'active' : ''}}" href="{{route('user.index')}}">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Blog</a>
+                            <a class="nav-link {{strpos(url()->current(), 'user') == true ? 'active' : ''}}" aria-current="page" href="{{route('game.index')}}">Game</a>
                         </li>
                     </ul>
 
@@ -80,5 +82,14 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description-game' ) )
+            .catch( error => {
+                console.log( error );
+            } );
+    </script>
+
 </body>
 </html>

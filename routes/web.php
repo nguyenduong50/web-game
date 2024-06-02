@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Client
+Route::get('/', [ClientController::class, 'index']);
+Route::get('/game/{slug}', [ClientController::class, 'game']);
+Route::get('/category', [ClientController::class, 'category']);
+Route::get('/category/{slug}', [ClientController::class, 'gameByCategory']);
 
 Auth::routes();
 
@@ -30,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/admin/category', CategoryController::class)->names('category');
     Route::resource('/admin/user', UserController::class)->names('user');
+    Route::resource('/admin/game', GameController::class)->names('game');
     Route::post('admin/category/destroy', [CategoryController::class, 'destroy']);
+    Route::post('admin/game/destroy', [GameController::class, 'destroy']);
 });
 

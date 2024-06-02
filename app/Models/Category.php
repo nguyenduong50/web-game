@@ -14,4 +14,9 @@ class Category extends Model
         'status',
         'description'
     ];
+
+    public function Category_Game () 
+    {
+        return $this->belongsToMany(Game::class, 'category_games', 'category_id', 'game_id');
+    }
 }

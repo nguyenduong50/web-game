@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('category_games', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('status'); //1: hoat dong, 0: tam khoa
-            $table->text('description')->nullable();
-            $table->string('thumbnail');
-            $table->string('slug');
-            $table->boolean('hotGame')->default(0); //1: game noi bat, 0: game thuong
+            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('game_id')->constrained('games');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('category_games');
     }
 };

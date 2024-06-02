@@ -38,14 +38,7 @@
                         >
                         Phục hồi
                     </a>
-                    <a data-id="{{$category->id}}" 
-                      class="btn btn-danger btn-sm" 
-                      data-bs-toggle="modal" 
-                      data-bs-target="#deleteModal" 
-                      type="button"
-                    >
-                      Xóa vĩnh viễn
-                    </a>
+                    <a data-id="{{$category->id}}" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" type="button">Xóa vĩnh viễn</a>
                 </td>
             </tr>
             @endforeach
@@ -57,52 +50,6 @@
     </tbody>
     </table>
 </div>
-
-<!-- Modal restore category -->
-<div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Phục hồi</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Bạn có thực sự muốn phục hồi category này không?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btn-restore-category">Phục hồi</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Form restore category -->
-<form action="{{url('admin/category/restore')}}" method="POST" id="form-restore-category">
-    @csrf
-    <input type="hidden" id="input-restore-id" name="id">
-</form>
-
-<!-- Script restore -->
-<script>
-    const restoreModal = document.getElementById('restoreModal');
-    const btnRestoreCategory = document.getElementById('btn-restore-category');
-    const formRestoreCategory = document.getElementById('form-restore-category');
-    const inputRestoreId = document.getElementById('input-restore-id');
-    let categoryId;
-
-    if (restoreModal) {
-        restoreModal.addEventListener('show.bs.modal', event => {
-            const button = event.relatedTarget;
-            categoryId = button.getAttribute('data-id');
-        });
-
-        btnRestoreCategory.addEventListener('click', function() {
-            inputRestoreId.value = categoryId;
-            formRestoreCategory.submit();
-        });
-    }
-</script>
 
 <!-- Modal delele category -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -129,23 +76,47 @@
     <input type="hidden" id="input-delete-id" name="id">
 </form>
 
-<!-- Script destroy -->
-<script>
-    const deleteModal = document.getElementById('deleteModal');
-    const btnDeleteCategory = document.getElementById('btn-delete-category');
-    const formDeleteCategory = document.getElementById('form-delete-category');
-    const inputDeleteId = document.getElementById('input-delete-id');
-    let categoryDeleteId;
+<!-- Modal restore category -->
+<div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Phục hồi</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có thực sự muốn phục hồi category này không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-restore-category">Phục hồi</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    if (deleteModal) {
-        deleteModal.addEventListener('show.bs.modal', event => {
+<!-- Form restore category -->
+<form action="{{url('admin/category/restore')}}" method="POST" id="form-restore-category">
+    @csrf
+    <input type="hidden" id="input-restore-id" name="id">
+</form>
+
+<script>
+    const restoreModal = document.getElementById('restoreModal');
+    const btnRestoreCategory = document.getElementById('btn-restore-category');
+    const formRestoreCategory = document.getElementById('form-restore-category');
+    const inputRestoreId = document.getElementById('input-restore-id');
+    let categoryId;
+
+    if (restoreModal) {
+        restoreModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget;
-            categoryDeleteId = button.getAttribute('data-id');
+            categoryId = button.getAttribute('data-id');
         });
 
-        btnDeleteCategory.addEventListener('click', function() {
-            inputDeleteId.value = categoryDeleteId;
-            formDeleteCategory.submit();
+        btnRestoreCategory.addEventListener('click', function() {
+            inputRestoreId.value = categoryId;
+            formRestoreCategory.submit();
         });
     }
 </script>
