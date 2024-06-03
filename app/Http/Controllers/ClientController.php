@@ -17,20 +17,20 @@ class ClientController extends Controller
 
     public function game($slug)
     {
-        $game = Game::findOrFail($slug);
+        $game = Game::where('slug', $slug)->first();
         return view('client.game', compact(['game']));
     }
 
     public function category()
     {
-        $categories = Category::orderBy('id', 'ASC')->get();
+        $categories = Category::orderBy('id', 'ASC')->where('status', 1)->where('deleted', 0)->get();
         return view('client.category', compact(['categories']));
     }
 
     public function gameByCategory($slug)
     {
-        $category = Category::findOrFail($slug);
+        $category = Category::where('slug', $slug)->first();
         $games = $category->Category_Game;
-        return view('client.games', compact(['games']));
+        return view('client.games', compact(['games', 'category']));
     }
 }

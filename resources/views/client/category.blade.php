@@ -7,7 +7,7 @@
         <div class="row">    
             @foreach ($categories as $category)           
             <div class="col-md-3 d-flex flex-column align-items-center">
-                <a href="{{url('/category/'.$category->id)}}">
+                <a href="{{url('/category/'.$category->slug)}}">
                     <img src="{{asset('img/categories/'.$category->thumbnail)}}" alt="category" width="100%" />
                 </a>              
                 <a href="#" class="my-3 fs-5">{{$category->name}}</a>

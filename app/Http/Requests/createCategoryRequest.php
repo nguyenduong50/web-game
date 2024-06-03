@@ -24,7 +24,8 @@ class createCategoryRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'status' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'thumbnail' => 'required'
         ];
     }
 
@@ -34,7 +35,8 @@ class createCategoryRequest extends FormRequest
             'name.required' => 'Trường tên là trường bắt buộc',
             'name.max' => 'Tối đa 255 ký tự',
             'status.required' => 'Trạng thái Status là trường bắt buộc',
-            'description.required' => 'Mô tả là trường bắt buộc'
+            'description.required' => 'Mô tả là trường bắt buộc',
+            'thumbnail.required' => 'Bắt buộc phải có ảnh thumbnail'
         ];
     }
 }

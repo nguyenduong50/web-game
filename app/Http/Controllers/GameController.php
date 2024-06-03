@@ -24,7 +24,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('id', 'ASC')->get();
+        $categories = Category::orderBy('id', 'ASC')->where('status', 1)->where('deleted', 0)->get();
         return view('admin.game.create', compact(['categories']));
     }
 
@@ -42,6 +42,12 @@ class GameController extends Controller
 
         //Save Game's thumbnail
         $get_image = $request->thumbnail;
+
+        if(!$get_image)
+        {
+            return redirect()->back()->with('error', 'Không có ảnh thumbnail');
+        }
+
         if($get_image)
         {
             $path = 'img/games/';
@@ -75,7 +81,7 @@ class GameController extends Controller
     public function edit($id)
     {
         $game = Game::findOrFail($id);
-        $categories = Category::orderBy('id', 'ASC')->get();
+        $categories = Category::orderBy('id', 'ASC')->where('status', 1)->where('deleted', 0)->get();
         $category_game = $game->Game_Category;
 
         return view('admin.game.edit',compact(['game', 'categories', 'category_game']));

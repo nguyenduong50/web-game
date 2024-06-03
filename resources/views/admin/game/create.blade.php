@@ -12,6 +12,12 @@
             </ul>
         </div>
     @endif
+
+    @if( session('error') )
+        <div class="alert alert-danger" role="alert">
+            <p>{{ session('error') }}</p>
+        </div>
+    @endif
     
     <form class="row g-3 needs-validation" action="{{route('game.store')}}" method="POST" enctype="multipart/form-data" novalidate> 
         @csrf

@@ -40,7 +40,7 @@
     @yield('content')
 
     <!-- Lien he-->
-    <section id="contract-ID" class="contract-section">
+    <section id="contract-ID" class="contract-section pt-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 contract">
