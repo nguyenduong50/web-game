@@ -13,6 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        /*
         Category::create([
             'name' => 'Hành động',
             'status' => '1',
@@ -42,5 +43,6 @@ class CategorySeeder extends Seeder
             'status' => '1',
             'description' => 'Mô tả game bắn súng'
         ]);
+        */
     }
 }

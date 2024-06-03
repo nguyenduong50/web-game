@@ -20,24 +20,6 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Vu Thao',
-            'email' => 'vuthao@gmail.com',
-            'password' => '123123123'
-        ]);
-
-        User::create([
-            'name' => 'Vu Thuy',
-            'email' => 'vuthuy@gmail.com',
-            'password' => '123123123'
-        ]);
-
-        User::create([
-            'name' => 'Nguyen Trang',
-            'email' => 'nguyentrang@gmail.com',
-            'password' => '123123123'
-        ]);
-
-        User::create([
             'name' => 'Vu Dong',
             'email' => 'vudong@gmail.com',
             'password' => '123123123'
