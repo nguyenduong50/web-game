@@ -1252,16 +1252,16 @@
         },
         {
             "name": "laravel/installer",
-            "version": "v5.8.0",
+            "version": "v5.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/installer.git",
-                "reference": "0802d02f9b5bc9be191b7dc95ce80d8de8b08931"
+                "reference": "727475e71e828d6d77a8824f27b81c023e8ba5b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/installer/zipball/0802d02f9b5bc9be191b7dc95ce80d8de8b08931",
-                "reference": "0802d02f9b5bc9be191b7dc95ce80d8de8b08931",
+                "url": "https://api.github.com/repos/laravel/installer/zipball/727475e71e828d6d77a8824f27b81c023e8ba5b3",
+                "reference": "727475e71e828d6d77a8824f27b81c023e8ba5b3",
                 "shasum": ""
             },
             "require": {
@@ -1301,9 +1301,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/installer/issues",
-                "source": "https://github.com/laravel/installer/tree/v5.8.0"
+                "source": "https://github.com/laravel/installer/tree/v5.8.5"
             },
-            "time": "2024-05-07T14:10:08+00:00"
+            "time": "2024-09-11T21:28:04+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -8234,12 +8234,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
